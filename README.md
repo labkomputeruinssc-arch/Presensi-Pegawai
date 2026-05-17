@@ -28,7 +28,7 @@ Presensi Pro v3 adalah sistem absensi modern yang dirancang menggunakan Google A
 
 ## 🛠️ Tech Stack
 * **Frontend**: HTML5, Vanilla JavaScript, Tailwind CSS (via CDN), FontAwesome, Leaflet.js
-* **Backend**: Google Apps Script (Node.js environment)
+* **Backend**: Google Apps Script
 * **Database**: Google Sheets
 * **Storage**: Google Drive (untuk penyimpanan foto selfie)
 
