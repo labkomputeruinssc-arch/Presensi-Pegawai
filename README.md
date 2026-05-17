@@ -62,7 +62,7 @@ Ikuti langkah-langkah di bawah ini untuk menginstal dan menggunakan aplikasi ini
 
 ### 3. Deploy Google Apps Script
 1. Dari Google Sheets, klik menu **Extensions > Apps Script**.
-2. Ubah nama project di pojok kiri atas menjadi "Sistem Presensi v3".
+2. Ubah nama project di pojok kiri atas menjadi "Sistem Presensi v1".
 3. Di panel sebelah kiri, buat dua file:
    - `Code.gs` (file Script bawaan)
    - `Index.html` (tambahkan file dengan klik tombol `+` > HTML)
@@ -80,7 +80,7 @@ Ikuti langkah-langkah di bawah ini untuk menginstal dan menggunakan aplikasi ini
    - Who has access: **Anyone** (Agar pegawai bisa mengakses tanpa login akun Google).
 4. Klik **Deploy**.
 5. Akan muncul pop-up **Authorize access**. Klik **Review Permissions** dan pilih akun Google Anda.
-6. (Jika muncul peringatan "*Google hasn't verified this app*"), klik **Advanced** > **Go to Sistem Presensi v3 (unsafe)**.
+6. (Jika muncul peringatan "*Google hasn't verified this app*"), klik **Advanced** > **Go to Sistem Presensi v1 (unsafe)**.
 7. Klik **Allow**.
 8. Salin **Web app URL**. URL ini adalah link aplikasi yang akan Anda bagikan ke pegawai.
 
