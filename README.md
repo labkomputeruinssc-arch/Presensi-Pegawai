@@ -13,7 +13,6 @@ Presensi Pro v3 adalah sistem absensi modern yang dirancang menggunakan Google A
   <img src="assets/Menu%20Log%20Absensi.webp" width="30%" alt="Log Absensi">
 </div>
 
----
 
 ## 🌟 Fitur Utama
 - **🌍 Validasi Geolokasi (Geofencing)**: Menolak absen jika posisi pegawai berada di luar radius kantor yang telah ditentukan.
@@ -28,11 +27,10 @@ Presensi Pro v3 adalah sistem absensi modern yang dirancang menggunakan Google A
 
 ## 🛠️ Tech Stack
 * **Frontend**: HTML5, Vanilla JavaScript, Tailwind CSS (via CDN), FontAwesome, Leaflet.js
-* **Backend**: Google Apps Script (Node.js environment)
+* **Backend**: Google Apps Script
 * **Database**: Google Sheets
 * **Storage**: Google Drive (untuk penyimpanan foto selfie)
 
----
 
 ## 🚀 Panduan Instalasi (Deployment)
 
@@ -118,5 +116,4 @@ Ikuti langkah-langkah di bawah ini untuk menginstal dan menggunakan aplikasi ini
 * **Lokasi terus-menerus Invalid**: Pastikan GPS di HP dalam mode *High Accuracy*. Jika masih bermasalah, di luar ruangan biasanya sinyal GPS lebih akurat daripada di dalam gedung.
 * **Gagal menyimpan foto**: Pastikan ID Folder Google Drive di `Code.gs` sudah benar dan folder tersebut tidak penuh (kuota Drive masih tersedia).
 
----
-*Dibuat khusus untuk Sistem Informasi Manajemen Kepegawaian (Presensi Pro v3)*
+
