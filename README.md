@@ -1,7 +1,7 @@
 # 📍 Presensi Pro v1
 
 **Aplikasi Presensi Pegawai Berbasis Lokasi (GPS) dan Selfie**
-Presensi Pro v3 adalah sistem absensi modern yang dirancang menggunakan Google Apps Script sebagai Backend dan antarmuka HTML/Tailwind CSS yang responsif. Sistem ini memvalidasi kehadiran pegawai berdasarkan titik koordinat (radius kantor) dan menyertakan bukti foto *selfie* real-time.
+Presensi Pro v1 adalah sistem absensi modern yang dirancang menggunakan Google Apps Script sebagai Backend dan antarmuka HTML/Tailwind CSS yang responsif. Sistem ini memvalidasi kehadiran pegawai berdasarkan titik koordinat (radius kantor) dan menyertakan bukti foto *selfie* real-time.
 
 ## 📸 Screenshots
 
