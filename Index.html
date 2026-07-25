@@ -690,7 +690,15 @@
 
         function handleLogout() {
             localStorage.removeItem('presensi_user_v3');
-            location.reload();
+            user = null;
+            document.getElementById('app').classList.add('hidden');
+            document.getElementById('loginScreen').classList.remove('hidden');
+            document.getElementById('loginPhone').value = '';
+            document.getElementById('loginPass').value = '';
+            document.getElementById('nav-setting').classList.add('hidden');
+            document.getElementById('nav-pegawai').classList.add('hidden');
+            document.getElementById('nav-log').classList.add('hidden');
+            switchTab('home');
         }
 
         /** KAMERA & SELFIE (menggunakan input file native) */
@@ -1228,7 +1236,7 @@
                     type: pType,
                     reason: pReason,
                     fileName: pFile.name,
-                    fileData: e.target.result.split(',')[1]
+                    fileData: e.target.result
                 };
 
                 google.script.run
