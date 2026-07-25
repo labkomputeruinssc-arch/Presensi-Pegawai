@@ -69,15 +69,16 @@ function submitAttendance(type, lat, lng, userId, selfieData) {
     const sheet = getSS().getSheetByName('Attendance');
     const data = sheet.getDataRange().getValues();
     const nowDate = new Date();
-    const today = Utilities.formatDate(nowDate, "GMT+7", "yyyy-MM-dd");
-    const now = Utilities.formatDate(nowDate, "GMT+7", "HH:mm:ss");
+    const tz = getSS().getSpreadsheetTimeZone();
+    const today = Utilities.formatDate(nowDate, tz, "yyyy-MM-dd");
+    const now = Utilities.formatDate(nowDate, tz, "HH:mm:ss");
 
     if (type === 'IN') {
       // Cek double absen masuk
       for (let i = 1; i < data.length; i++) {
         let recordDate = data[i][2];
         if (recordDate instanceof Date) {
-          recordDate = Utilities.formatDate(recordDate, "GMT+7", "yyyy-MM-dd");
+          recordDate = Utilities.formatDate(recordDate, tz, "yyyy-MM-dd");
         }
         if (data[i][1] == userId && recordDate == today) {
           return { success: false, message: "Anda sudah absen masuk hari ini!" };
@@ -91,7 +92,7 @@ function submitAttendance(type, lat, lng, userId, selfieData) {
       for (let i = data.length - 1; i >= 1; i--) {
         let recordDate = data[i][2];
         if (recordDate instanceof Date) {
-          recordDate = Utilities.formatDate(recordDate, "GMT+7", "yyyy-MM-dd");
+          recordDate = Utilities.formatDate(recordDate, tz, "yyyy-MM-dd");
         }
         if (data[i][1] == userId && recordDate == today) {
           if (data[i][4] !== "") return { success: false, message: "Anda sudah absen keluar hari ini!" };
@@ -216,7 +217,8 @@ function getDashboardData(userId, role) {
     const permits = getSheetData('Permits');
     const users = getSheetData('Users');
     const settings = getSettings();
-    const today = Utilities.formatDate(new Date(), "GMT+7", "yyyy-MM-dd");
+    const tz = getSS().getSpreadsheetTimeZone();
+    const today = Utilities.formatDate(new Date(), tz, "yyyy-MM-dd");
 
     const res = {
       stats: {
@@ -331,15 +333,16 @@ function getSheetData(n) {
   if (!sheet) return [];
   
   var data = sheet.getDataRange().getValues();
+  var tz = sheet.getParent().getSpreadsheetTimeZone();
   // Automatically convert ALL dates to strings globally
   // This prevents google.script.run from silently crashing!
   return data.map(function(row) {
     return row.map(function(cell) {
       if (cell instanceof Date) {
         if (cell.getFullYear() === 1899) {
-          return Utilities.formatDate(cell, "GMT+7", "HH:mm:ss");
+          return Utilities.formatDate(cell, tz, "HH:mm:ss");
         }
-        return Utilities.formatDate(cell, "GMT+7", "yyyy-MM-dd");
+        return Utilities.formatDate(cell, tz, "yyyy-MM-dd");
       }
       return cell;
     });
@@ -362,7 +365,7 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
  */
 function getServerTime() {
   try {
-    var tz = Session.getScriptTimeZone ? Session.getScriptTimeZone() : 'GMT+7';
+    var tz = getSS().getSpreadsheetTimeZone();
     var now = new Date();
     return {
       now: now.getTime(),
