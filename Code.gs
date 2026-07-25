@@ -68,8 +68,9 @@ function submitAttendance(type, lat, lng, userId, selfieData) {
 
     const sheet = getSS().getSheetByName('Attendance');
     const data = sheet.getDataRange().getValues();
-    const today = Utilities.formatDate(new Date(), "GMT+7", "yyyy-MM-dd");
-    const now = Utilities.formatDate(new Date(), "GMT+7", "HH:mm:ss");
+    const nowDate = new Date();
+    const today = Utilities.formatDate(nowDate, "GMT+7", "yyyy-MM-dd");
+    const now = Utilities.formatDate(nowDate, "GMT+7", "HH:mm:ss");
 
     if (type === 'IN') {
       // Cek double absen masuk
@@ -84,7 +85,7 @@ function submitAttendance(type, lat, lng, userId, selfieData) {
       }
       // [0]id, [1]userId, [2]tgl, [3]jamIn, [4]jamOut, [5]lat, [6]lng, [7]latOut, [8]lngOut, [9]status, [10]photo
       sheet.appendRow([Utilities.getUuid(), userId, today, now, "", lat, lng, "", "", "Hadir", photoUrl]);
-      return { success: true, message: "Absen Masuk Berhasil!" };
+      return { success: true, message: "Absen Masuk Berhasil!", serverTime: now, serverDate: today, serverTs: nowDate.getTime() };
     } else {
       // Cari data masuk hari ini untuk diupdate
       for (let i = data.length - 1; i >= 1; i--) {
@@ -99,7 +100,7 @@ function submitAttendance(type, lat, lng, userId, selfieData) {
           sheet.getRange(i + 1, 8).setValue(lat); // Lat Out
           sheet.getRange(i + 1, 9).setValue(lng); // Lng Out
           sheet.getRange(i + 1, 11).setValue(photoUrl); // Foto Keluar
-          return { success: true, message: "Absen Keluar Berhasil!" };
+          return { success: true, message: "Absen Keluar Berhasil!", serverTime: now, serverDate: today, serverTs: nowDate.getTime() };
         }
       }
       return { success: false, message: "Anda belum melakukan absen masuk!" };
@@ -354,4 +355,22 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
             Math.sin(dLon/2) * Math.sin(dLon/2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
   return R * c;
+}
+
+/**
+ * Kembalikan waktu server (Apps Script) untuk sinkronisasi jam client
+ */
+function getServerTime() {
+  try {
+    var tz = Session.getScriptTimeZone ? Session.getScriptTimeZone() : 'GMT+7';
+    var now = new Date();
+    return {
+      now: now.getTime(),
+      formattedDate: Utilities.formatDate(now, tz, 'yyyy-MM-dd'),
+      formattedTime: Utilities.formatDate(now, tz, 'HH:mm:ss'),
+      timeZone: tz
+    };
+  } catch (e) {
+    return { error: e.toString() };
+  }
 }
