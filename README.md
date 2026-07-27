@@ -44,7 +44,7 @@ Ikuti langkah-langkah di bawah ini untuk menginstal dan menggunakan aplikasi ini
    - `Permits`
    - `Settings`
 3. Buat Header di Baris 1 untuk masing-masing Sheet:
-   - **Users**: `id_user` | `nama` | `jabatan` | `nomor_hp` | `password` | `role` | `foto`
+   - **Users**: `id` | `nama` | `jabatan` | `nomor_hp` | `password` | `role` | `foto`
    - **Attendance**: `id_absen` | `id_user` | `tanggal` | `jam_masuk` | `jam_keluar` | `lat_in` | `lng_in` | `lat_out` | `lng_out` | `status` | `foto`
    - **Permits**: `  id_izin` | `id_user` | `tanggal` | `jenis` | `alasan` | `lampiran` | `status_approval`
    - **Settings**: `key` | `value`
